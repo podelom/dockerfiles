@@ -1,6 +1,6 @@
 FROM centos:7
 ENV container docker
-RUN yum -y update && yum -y upgrade && yum -y install wget curl git  gcc gcc-c++ glibc-devel make ncurses-devel openssl-devel autoconf java-1.8.0-openjdk-devel wxBase.x86_64 curl 
+RUN yum -y update && yum -y upgrade && yum -y install wget curl git  gcc gcc-c++ glibc-devel make ncurses-devel openssl-devel autoconf java-1.8.0-openjdk-devel wxBase.x86_64 curl net-tools 
 RUN yum -y install epel-release 
 RUN yum -y install erlang
 RUN wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
