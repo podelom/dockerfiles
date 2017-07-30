@@ -1,5 +1,4 @@
 FROM centos:7
-ENV IP=95.213.204.113
 RUN yum -y update && yum -y upgrade && yum -y install wget curl git  gcc gcc-c++ glibc-devel make ncurses-devel openssl-devel autoconf java-1.8.0-openjdk-devel wxBase.x86_64 curl net-tools 
 RUN yum -y install epel-release && yum -y install erlang
 RUN wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm && rpm -Uvh erlang-solutions-1.0-1.noarch.rpm 
@@ -9,7 +8,7 @@ RUN git init && git clone "https://github.com/Antibiotic/websocket_chat" && git 
 WORKDIR /opt/rebar3 
 RUN cd /opt/rebar3 && ./bootstrap && ./rebar3 local install
 RUN echo "export PATH=$PATH:~/.cache/rebar3/bin" >> ~/.bashrc && cp ~/.cache/rebar3/bin/rebar3 /usr/bin/
-CMD["bash", "-c", "sed -i s/localhost/${IP}/g /opt/websocket_chat/priv/www/index.js]
+RUN sed -i s/localhost/95.213.204.113/g /opt/websocket_chat/priv/www/index.js
 WORKDIR /opt/websocket_chat/
 RUN make compile
 VOLUME [ "/sys/fs/cgroup" ]
